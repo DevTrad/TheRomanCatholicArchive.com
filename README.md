@@ -5,7 +5,7 @@ Online archive of Catholic books
 
 1. Install `python 3.x`
 2. Install `django` by running `pip3 install django` in a terminal window as administrator
-3. `cd` into the directory you cloned this project
+3. `cd` into `TheRomanCatholicArchive.com/CatholicArchive`
 3. Run `python3 manage.py createsuperuser`, remember the credentials you use
 4. Run `python3 manage.py migrate`
 5. Run `python3 manage.py runserver`
