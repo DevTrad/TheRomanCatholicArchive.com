@@ -1,0 +1,13 @@
+{% if recently_added_books %}
+    <h1>Recently Added Books</h1>
+
+    <ul>
+        {% for book in recently_added_books %}
+            <li>
+                <a href="{% url 'books:detail' book.id %}">{{ book.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1>No books found in database</h1>
+{% endif %}
