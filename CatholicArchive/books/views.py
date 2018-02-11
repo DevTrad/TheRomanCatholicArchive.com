@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import generic
+
 from .models import Book
 
-def index(request):
-    recently_added_books = Book.objects.order_by('-id')[:10]
+class IndexView(generic.ListView):
+    template_name = 'books/index.html'
+    context_object_name = 'recently_added_books'
 
-    view_model = {
-        'recently_added_books': recently_added_books
-    }
+    def get_queryset(self):
+        """ return the most recently added books """
+        return Book.objects.order_by('-id')[:10]
 
-    return render(request, 'books/index.html', view_model)
+class DetailView(generic.DetailView):
+    model = Book
+    template_name = 'books/detail.html'
 
-
-def detail(request):
-    return HttpResponse('Detail view')
