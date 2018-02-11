@@ -1,0 +1,43 @@
+/*
+Palette https://coolors.co/3482ad-1e6e99-013959-000000-162026
+
+Primary:   #3482ad
+Secondary: #1e6e99
+Tertiary:  #013959
+Light:     #eceeed
+Dark:      #162026
+*/
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+    background-color: #eceeed;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1e6e99;
+}
+
+header {
+    background-color: #013959;
+    color: #eceeed;
+    display: flex;
+    padding: .5em;
+}
+
+header h1, header a {
+    margin-top: .3em;
+    margin-bottom: .3em;
+    color: inherit;
+    text-decoration: none;
+}
+
+article {
+    padding: .5em;
+}

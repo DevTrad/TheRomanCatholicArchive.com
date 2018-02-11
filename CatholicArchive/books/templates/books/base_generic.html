@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title %}<title>The Roman Catholic Archive</title>{% endblock %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'books/styles.css' %}" />
+</head>
+<body>
+    <header>
+        <a href="{% url 'books:index' %}"><h1>The Roman Catholic Archive</h1></a>
+    </header>
+    <article>
+        {% block content %}{% endblock %}
+    </article>
+</body>
+</html>

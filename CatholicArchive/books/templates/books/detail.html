@@ -1,4 +1,8 @@
+{% extends 'books/base_generic.html' %}
+
+{% block content %}
 <h1>{{ book.title }}</h1>
 
 <strong>Author:</strong> {{ book.author }}<br>
 <strong>Publication Date:</strong> {{ book.publication_date }}
+{% endblock %}

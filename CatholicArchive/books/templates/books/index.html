@@ -1,3 +1,6 @@
+{% extends 'books/base_generic.html' %}
+
+{% block content %}
 {% if recently_added_books %}
     <h1>Recently Added Books</h1>
 
@@ -11,3 +14,4 @@
 {% else %}
     <h1>No books found in database</h1>
 {% endif %}
+{% endblock %}
