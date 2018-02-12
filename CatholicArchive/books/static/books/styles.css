@@ -38,6 +38,32 @@ header h1, header a {
     text-decoration: none;
 }
 
+
+nav {
+    background-color: #1e6e99;
+    font-weight: bold;
+    padding: .5em;
+}
+
+nav a {
+    color: #eceeed;
+    text-decoration: none;
+    margin-right: 2em;
+}
+
 article {
     padding: .5em;
+}
+
+table {
+    width: 100%;
+}
+
+table th, table td {
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+table th {
+    border-bottom-width: 2px;
 }

@@ -13,6 +13,12 @@
     <header>
         <a href="{% url 'books:index' %}"><h1>The Roman Catholic Archive</h1></a>
     </header>
+    <nav>
+        <a href="{% url 'books:index' %}">Home</a>
+        <a href="{% url 'books:catalog' %}">Catelogue of Catholic Publications</a>
+        <a href="">Newest Additions</a>
+        <a href="">Support the Project</a>
+    </nav>
     <article>
         {% block content %}{% endblock %}
     </article>

@@ -4,5 +4,6 @@
 <h1>{{ book.title }}</h1>
 
 <strong>Author:</strong> {{ book.author }}<br>
-<strong>Publication Date:</strong> {{ book.publication_date }}
+<strong>Year Published:</strong> {{ book.publication_year }}<br>
+<strong>Download:</strong> <a href="{{ book.download_url }}">{{ book.download_url }}</a><br>
 {% endblock %}

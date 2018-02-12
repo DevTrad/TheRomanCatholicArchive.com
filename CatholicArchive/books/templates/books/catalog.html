@@ -1,0 +1,35 @@
+{% extends 'books/base_generic.html' %}
+
+{% block content %}
+{% if books %}
+    <h1>Catalog of Catholic Books</h1>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Download url</th>
+        </tr>
+
+        {% for book in books %}
+            <tr>
+                <td>
+                    <a href="{% url 'books:detail' book.id %}">{{ book.title }}</a>
+                </td>
+                <td>
+                    {{ book.author }}
+                </td>
+                <td>
+                    {{ book.publication_year }}
+                </td>
+                <td>
+                    <a href="{{ book.download_url }}">{{ book.download_url }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h1>No books found in database</h1>
+{% endif %}
+{% endblock %}
