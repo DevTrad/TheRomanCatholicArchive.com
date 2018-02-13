@@ -57,6 +57,7 @@ article {
 
 table {
     width: 100%;
+    margin-bottom: 1em;
 }
 
 table th, table td {
@@ -66,4 +67,8 @@ table th, table td {
 
 table th {
     border-bottom-width: 2px;
+}
+
+.text-center {
+    text-align: center;
 }

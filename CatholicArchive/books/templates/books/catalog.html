@@ -29,6 +29,22 @@
             </tr>
         {% endfor %}
     </table>
+
+    <div>
+        {% if page > 1 %}
+        <a href="{% url 'books:catalog' page=page|add:'-1' %}">Prev</a>
+        {% else %}
+        Prev
+        {% endif %}
+
+        | Page {{ page }} |
+
+        {% if books|length == items_per_page %}
+        <a href="{% url 'books:catalog' page=page|add:'1' %}">Next</a>
+        {% else %}
+        Next
+        {% endif %}
+    </div>
 {% else %}
     <h1>No books found in database</h1>
 {% endif %}

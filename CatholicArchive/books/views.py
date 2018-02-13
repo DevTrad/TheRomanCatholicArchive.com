@@ -16,10 +16,24 @@ class IndexView(generic.ListView):
 class CatalogView(generic.ListView):
     template_name = 'books/catalog.html'
     context_object_name = 'books'
+    items_per_page = 10
+    page = 1
 
     def get_queryset(self):
         """ return books based on page """
-        return Book.objects.order_by('-id')
+        try:
+            self.page = self.kwargs['page']
+        except:
+            self.page = 1
+
+        return Book.objects.order_by('title')[self.page*self.items_per_page - self.items_per_page : self.page*self.items_per_page]
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = self.page
+        context['items_per_page'] = self.items_per_page
+
+        return context
 
 
 class DetailView(generic.DetailView):
