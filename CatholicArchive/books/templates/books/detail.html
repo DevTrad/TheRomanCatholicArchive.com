@@ -6,4 +6,12 @@
 <strong>Author:</strong> {{ book.author }}<br>
 <strong>Year Published:</strong> {{ book.publication_year }}<br>
 <strong>Download:</strong> <a href="{{ book.download_url }}">{{ book.download_url }}</a><br>
+
+<strong>Categories:</strong>
+{% for category in book.categories.all %}
+    {{ category.name }}{% if forloop.counter != book.categories.all|length %},{% endif %}
+{% empty %}
+    None
+{% endfor %}
+
 {% endblock %}

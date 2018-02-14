@@ -9,6 +9,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Publication Year</th>
+            <th>Categories</th>
             <th>Download url</th>
         </tr>
 
@@ -22,6 +23,13 @@
                 </td>
                 <td>
                     {{ book.publication_year }}
+                </td>
+                <td>
+                    {% for category in book.categories.all %}
+                        {{ category.name }}{% if forloop.counter != book.categories.all|length %},{% endif %}
+                    {% empty %}
+                        None
+                    {% endfor %}
                 </td>
                 <td>
                     <a href="{{ book.download_url }}">{{ book.download_url }}</a>
