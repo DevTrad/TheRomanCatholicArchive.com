@@ -5,19 +5,11 @@ from django.utils import timezone
 from .models import Book
 
 class BookIndexViewTests(TestCase):
-    def test_no_books(self):
-        """
-        If no books exist, an appropriate message is displayed
-        """
-        response = self.client.get(reverse('books:index'))
-
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'No books found')
-        self.assertQuerysetEqual(response.context['recently_added_books'], [])
+    """ Tests for books:index """
 
     def test_multiple_books(self):
         """
-        The books index page can show multiple books (sorted by most recently added)
+        The books index page can show the 5 most recent books (sorted by most recently added)
         """
         number_of_books = 10
 
@@ -25,23 +17,53 @@ class BookIndexViewTests(TestCase):
             Book.objects.create(
                 title='Book ' + str(i), 
                 author='Author' + str(i),
-                publication_date=timezone.now()
+                publication_year=2000
             )
 
         response = self.client.get(reverse('books:index'))
 
-        self.assertQuerysetEqual(
-            response.context['recently_added_books'],
-            [('<Book: Book ' + str(n) + '>') for n in range(number_of_books - 1, 0, -1)]
-        )
+        self.assertEqual(len(response.context['recently_added_books']), 5)
+
+
+class BookCatalogViewTests(TestCase):
+    """ Tests for books:catalog """
+    def test_no_books(self):
+        """
+        If no books exist, an appropriate message is displayed
+        """
+        response = self.client.get(reverse('books:catalog'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'No books found')
+        self.assertQuerysetEqual(response.context['books'], [])
+
+    def test_multiple_books(self):
+        """
+        The books catalog page can show multiple books (sorted alphabetically, paginated at 10 items per page)
+        """
+        number_of_books = 20
+        books_list = []
+
+        for i in range(1, number_of_books):
+            Book.objects.create(
+                title='Book ' + str(i), 
+                author='Author' + str(i),
+                publication_year=2000
+            )
+
+        response = self.client.get(reverse('books:catalog'))
+
+        self.assertEqual(len(response.context['books']), 10)
 
 
 class BookDetailViewTests(TestCase):
+    """ Tests for books:detail """
+
     def test_existing_book(self):
         """
         If book exists, display details
         """
-        book = Book.objects.create(title='A Book Title', author='Author McAuthorname', publication_date=timezone.now())
+        book = Book.objects.create(title='A Book Title', author='Author McAuthorname', publication_year=2000)
         url = reverse('books:detail', args=(book.id,))
 
         response = self.client.get(url)
@@ -56,3 +78,5 @@ class BookDetailViewTests(TestCase):
         response = self.client.get(reverse('books:detail', args=(1,)))
 
         self.assertEqual(response.status_code, 404)
+
+
