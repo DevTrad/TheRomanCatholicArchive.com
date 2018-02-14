@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 
-from .models import Book
+from .models import Book, Category
 
 class IndexView(generic.ListView):
     template_name = 'books/index.html'
@@ -16,22 +16,26 @@ class IndexView(generic.ListView):
 class CatalogView(generic.ListView):
     template_name = 'books/catalog.html'
     context_object_name = 'books'
-    items_per_page = 10
+    paginate_by = 10
+    ordering = 'title'
     page = 1
 
     def get_queryset(self):
-        """ return books based on page """
-        try:
-            self.page = self.kwargs['page']
-        except:
-            self.page = 1
+        """ Return list of books """
+        category_id = self.request.GET.get('category')
 
-        return Book.objects.order_by('title')[self.page*self.items_per_page - self.items_per_page : self.page*self.items_per_page]
-    
+        if category_id:
+            return Book.objects.filter(categories=category_id)
+        else:
+            return Book.objects.all()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page'] = self.page
-        context['items_per_page'] = self.items_per_page
+
+        category_id = self.request.GET.get('category')
+
+        if category_id:
+            context['category'] = Category.objects.get(id=category_id).name
 
         return context
 

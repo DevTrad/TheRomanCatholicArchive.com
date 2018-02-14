@@ -2,7 +2,18 @@
 
 {% block content %}
 {% if books %}
-    <h1>Catalog of Catholic Books</h1>
+    <h1>
+        Catalog of Catholic Books
+        {% if category %}
+            (Category: {{ category }})
+        {% endif %}
+    </h1>
+
+    {% if category %}
+        <p>
+            <a href="{% url 'books:catalog' %}">View all</a>
+        </div>
+    {% endif %}
 
     <table>
         <tr>
@@ -26,7 +37,7 @@
                 </td>
                 <td>
                     {% for category in book.categories.all %}
-                        {{ category.name }}{% if forloop.counter != book.categories.all|length %},{% endif %}
+                        <a href="{% url 'books:catalog' %}?category={{ category.id }}">{{ category.name }}</a>
                     {% empty %}
                         None
                     {% endfor %}
@@ -39,18 +50,20 @@
     </table>
 
     <div>
-        {% if page > 1 %}
-        <a href="{% url 'books:catalog' page=page|add:'-1' %}">Prev</a>
-        {% else %}
-        Prev
-        {% endif %}
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="{% url 'books:catalog' page=page_obj.previous_page_number %}">Prev</a>
+            {% else %}
+                Prev
+            {% endif %}
 
-        | Page {{ page }} |
+            | Page {{ page_obj.number }} |
 
-        {% if books|length == items_per_page %}
-        <a href="{% url 'books:catalog' page=page|add:'1' %}">Next</a>
-        {% else %}
-        Next
+            {% if page_obj.has_next %}
+                <a href="{% url 'books:catalog' page=page_obj.next_page_number %}">Next</a>
+            {% else %}
+                Next
+            {% endif %}
         {% endif %}
     </div>
 {% else %}
