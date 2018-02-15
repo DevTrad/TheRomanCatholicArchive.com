@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 header {
     background-color: #013959;
+    background-image: url('images/books-header.jpg');
     color: #eceeed;
     display: flex;
     padding: .5em;
