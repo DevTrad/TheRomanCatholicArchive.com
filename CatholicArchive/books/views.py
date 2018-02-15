@@ -44,3 +44,5 @@ class DetailView(generic.DetailView):
     model = Book
     template_name = 'books/detail.html'
 
+def donate(request):
+    render(request, 'books/donate.html')
