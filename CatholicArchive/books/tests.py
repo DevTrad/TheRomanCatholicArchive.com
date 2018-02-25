@@ -27,6 +27,7 @@ class BookIndexViewTests(TestCase):
 
 class BookCatalogViewTests(TestCase):
     """ Tests for books:catalog """
+
     def test_no_books(self):
         """
         If no books exist, an appropriate message is displayed
