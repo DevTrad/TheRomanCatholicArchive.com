@@ -12,7 +12,9 @@
 </head>
 <body>
     <header>
-        <a href="{% url 'books:index' %}"><h1>The Roman Catholic Archive</h1></a>
+        <a href="{% url 'books:index' %}">
+            <img src="{% static 'books/images/header.png' %}" alt="">
+        </a>
     </header>
     <nav>
         <a href="{% url 'books:index' %}">Home</a>
