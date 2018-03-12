@@ -1,6 +1,8 @@
 {% extends 'books/base_generic.html' %}
+{% load staticfiles %}
 
 {% block content %}
+  <img src="{% static 'books/images/catalog_image.png' %}" alt="">
 {% if books %}
     <h1>
         Catalog of Catholic Books
