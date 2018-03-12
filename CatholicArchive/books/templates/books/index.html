@@ -2,17 +2,12 @@
 {% load static %}
 
 {% block content %}
-<section>
-    <h1>Welcome</h1>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae dolore adipisci ipsam commodi omnis, ratione sapiente iusto voluptas cupiditate dolor quos minima modi cumque possimus, blanditiis quidem optio fugit libero!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae dolore adipisci ipsam commodi omnis, ratione sapiente iusto voluptas cupiditate dolor quos minima modi cumque possimus, blanditiis quidem optio fugit libero!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae dolore adipisci ipsam commodi omnis, ratione sapiente iusto voluptas cupiditate dolor quos minima modi cumque possimus, blanditiis quidem optio fugit libero!
-    </p>
-</section>
+
+  <img src="{% static 'books/images/index_photo2.jpg' %}" alt="">
+
 
 {% if recently_added_books %}
-    <h2>Recently Added Books</h1>
+    <h2>Recently Added Publications</h1>
 
     <ul>
         {% for book in recently_added_books %}
@@ -25,6 +20,7 @@
     <a href="{% url 'books:catalog' %}">View all books</a>
 {% endif %}
 
-<h2>Contact</h1>
-<a href="mailto:theromancatholicarchive@gmail.com">theromancatholicarchive@gmail.com</a>
+<footer>
+Contact: <a href="mailto:theromancatholicarchive@gmail.com">theromancatholicarchive@gmail.com</a>
+</footer>
 {% endblock %}

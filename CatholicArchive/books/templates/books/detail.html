@@ -5,9 +5,9 @@
 
 <strong>Author:</strong> {{ book.author }}<br>
 <strong>Year Published:</strong> {{ book.publication_year }}<br>
-<strong>Download:</strong> <a href="{{ book.download_url }}">{{ book.download_url }}</a><br>
+<strong>Link to publication:</strong> <a href = "{{ book.download_url }}" target="book.download_url">{{ book.download_url }}</a><br>
 
-<strong>Categories:</strong>
+<strong>Category:</strong>
 {% for category in book.categories.all %}
     <a href="{% url 'books:catalog' %}?category={{ category.id }}">{{ category.name }}</a>
 {% empty %}
